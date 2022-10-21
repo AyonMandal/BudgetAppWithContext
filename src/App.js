@@ -11,7 +11,12 @@ const App = () => {
         <Button variant="primary">Add Budget</Button>
         <Button variant="outline-primary">Add Expense</Button>
       </Stack>
-      <BudgetCard name="Entertainment" amount={1100} maxAmount={1000} />
+      <BudgetCard
+        name="Entertainment"
+        amount={110}
+        maxAmount={1000}
+        bgGray={true}
+      />
     </Container>
   );
 };

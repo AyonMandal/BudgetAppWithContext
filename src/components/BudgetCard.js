@@ -4,8 +4,14 @@ import { Card, ProgressBar, Stack } from "react-bootstrap";
 import { currencyFormatter } from "../utils/CurrencyFormatter";
 
 const BudgetCard = (props) => {
+  const classNames = [];
+  if (props.amount > props.maxAmount) {
+    classNames.push("bg-danger", "bg-opacity-10");
+  } else if (props.bgGray) {
+    classNames.push("bg-light");
+  }
   return (
-    <Card>
+    <Card className={classNames.join(" ")}>
       <Card.Body>
         <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
           <div className="me-2">{props.name}</div>

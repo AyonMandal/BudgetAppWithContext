@@ -13,8 +13,8 @@ const App = () => {
       </Stack>
       <BudgetCard
         name="Entertainment"
-        amount={110}
-        maxAmount={1000}
+        amount={1750}
+        maxAmount={2400}
         bgGray={true}
       />
     </Container>

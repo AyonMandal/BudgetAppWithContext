@@ -28,6 +28,7 @@ const BudgetCard = (props) => {
           min={0}
           max={props.maxAmount}
           now={props.amount}
+          label={`${getLabelPercentageValue(props.amount, props.maxAmount)}%`}
         />
         <Stack direction="horizontal" gap={2} className="mt-4">
           <Button variant="outline-primary" className="ms-auto">
@@ -48,4 +49,7 @@ function getProgressBarVariant(amount, maxAmount) {
   return "danger";
 }
 
+function getLabelPercentageValue(amount, maxAmount) {
+  return Math.round((amount / maxAmount) * 100);
+}
 export default BudgetCard;

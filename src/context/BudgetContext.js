@@ -6,8 +6,9 @@
 // 6. Expense Struct : {id, budgetId, amount, description}
 // -----------------------------------------------------------------------------------
 
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useLocalStorageHook } from "../customHooks/localStorageHook";
 const BudgetsContext = React.createContext();
 
 export const useBudgets = () => {
@@ -15,8 +16,8 @@ export const useBudgets = () => {
 };
 
 export const BudgetsProvider = ({ children }) => {
-  const [budgets, setBudgets] = useState([]);
-  const [expenses, setExpenses] = useState([]);
+  const [budgets, setBudgets] = useLocalStorageHook("budgets", []);
+  const [expenses, setExpenses] = useLocalStorageHook("expenses", []);
 
   const getBudgetExpenses = (budgetId) => {
     return expenses.filter((expense) => expense.budgetId === budgetId);

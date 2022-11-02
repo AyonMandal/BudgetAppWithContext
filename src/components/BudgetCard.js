@@ -4,7 +4,7 @@ import { Card, ProgressBar, Stack } from "react-bootstrap";
 import { currencyFormatter } from "../utils/CurrencyFormatter";
 
 const BudgetCard = (props) => {
-  const classNames = [];
+  const classNames = ["mb-3"];
   if (props.amount > props.maxAmount) {
     classNames.push("bg-danger", "bg-opacity-10");
   } else if (props.bgGray) {

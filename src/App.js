@@ -10,6 +10,7 @@ import AddExpenseModal from "./components/AddExpenseModal";
 const App = () => {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
+  const [budgetId, setBudgetId] = useState("");
   const { budgets, getBudgetExpenses } = useBudgets();
 
   function hideAddBudgetModal() {
@@ -19,12 +20,18 @@ const App = () => {
   function hideAddExpenseModal() {
     setShowAddExpenseModal(false);
   }
+
+  function showExpenseModalForBudget(id = "UNCATEGORIZED_EXPENSE") {
+    setBudgetId(id);
+    setShowAddExpenseModal(true);
+    console.log(" I set value to " + id);
+  }
   return (
     <>
       <Container className="my-2">
         <Stack direction="horizontal" gap={2} className="mb-4">
           <h1 className="me-auto">Budgets</h1>
-          <Button variant="primary" onClick={() => setShowAddBudgetModal(true)}>
+          <Button variant="primary" onClick={() => showExpenseModalForBudget()}>
             Add Budget
           </Button>
           <Button
@@ -45,7 +52,9 @@ const App = () => {
               name={budget.name}
               amount={amount}
               maxAmount={budget.max}
+              id={budget.id}
               bgGray={true}
+              budgetIdToPass={showExpenseModalForBudget}
             />
           );
         })}
@@ -57,6 +66,7 @@ const App = () => {
       <AddExpenseModal
         showModal={showAddExpenseModal}
         hideModal={hideAddExpenseModal}
+        defaultBudgetId={budgetId}
       />
     </>
   );

@@ -46,7 +46,16 @@ const AddExpenseModal = (props) => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="budgetID">
               <Form.Label>Budget Category</Form.Label>
-              <Form.Select ref={budgetIdRef}>
+              <Form.Select
+                ref={budgetIdRef}
+                defaultValue={props.defaultBudgetId}
+              >
+                <option
+                  id="UNCATEGORIZED_EXPENSE"
+                  value="UNCATEGORIZED_EXPENSE"
+                >
+                  Uncategorized
+                </option>
                 {budgets.map((budget) => (
                   <option value={budget.id} key={budget.id}>
                     {budget.name}

@@ -16,20 +16,28 @@ const BudgetCard = (props) => {
         <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
           <div className="me-2">{props.name}</div>
           <div className="d-flex align-items-baseline">
-            {currencyFormatter.format(props.amount)} /{" "}
-            <span className="text-muted fs-6">
-              {currencyFormatter.format(props.maxAmount)}
-            </span>
+            {currencyFormatter.format(props.amount)}{" "}
+            {props.maxAmount && (
+              <>
+                {"/"}
+                <span className="text-muted fs-6">
+                  &nbsp;{currencyFormatter.format(props.maxAmount)}
+                </span>
+              </>
+            )}
           </div>
         </Card.Title>
-        <ProgressBar
-          className="rounded-pill"
-          variant={getProgressBarVariant(props.amount, props.maxAmount)}
-          min={0}
-          max={props.maxAmount}
-          now={props.amount}
-          label={`${getLabelPercentageValue(props.amount, props.maxAmount)}%`}
-        />
+        {props.maxAmount && (
+          <ProgressBar
+            className="rounded-pill"
+            variant={getProgressBarVariant(props.amount, props.maxAmount)}
+            min={0}
+            max={props.maxAmount}
+            now={props.amount}
+            label={`${getLabelPercentageValue(props.amount, props.maxAmount)}%`}
+          />
+        )}
+
         <Stack direction="horizontal" gap={2} className="mt-4">
           <Button
             variant="outline-primary"

@@ -37,17 +37,18 @@ const BudgetCard = (props) => {
             label={`${getLabelPercentageValue(props.amount, props.maxAmount)}%`}
           />
         )}
-
-        <Stack direction="horizontal" gap={2} className="mt-4">
-          <Button
-            variant="outline-primary"
-            className="ms-auto"
-            onClick={() => props.budgetIdToPass(props.id)}
-          >
-            Add Expense
-          </Button>
-          <Button variant="outline-secondary">View Expenses</Button>
-        </Stack>
+        {!props.hideButtonsFromCard && (
+          <Stack direction="horizontal" gap={2} className="mt-4">
+            <Button
+              variant="outline-primary"
+              className="ms-auto"
+              onClick={() => props.budgetIdToPass(props.id)}
+            >
+              Add Expense
+            </Button>
+            <Button variant="outline-secondary">View Expenses</Button>
+          </Stack>
+        )}
       </Card.Body>
     </Card>
   );

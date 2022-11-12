@@ -42,11 +42,16 @@ const BudgetCard = (props) => {
             <Button
               variant="outline-primary"
               className="ms-auto"
-              onClick={() => props.budgetIdToPass(props.id)}
+              onClick={() => props.budgetIdToPassForAddModal(props.id)}
             >
               Add Expense
             </Button>
-            <Button variant="outline-secondary">View Expenses</Button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => props.budgetIdToPassForViewModal(props.id)}
+            >
+              View Expenses
+            </Button>
           </Stack>
         )}
       </Card.Body>

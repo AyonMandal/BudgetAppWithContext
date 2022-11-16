@@ -8,10 +8,12 @@ import { useBudgets } from "./context/BudgetContext";
 import AddExpenseModal from "./components/AddExpenseModal";
 import UncategorizedBudgetCard from "./components/UncategorizedBudgetCard";
 import TotalBudgetCard from "./components/TotalBudgetCard";
+import ViewExpensesModal from "./components/ViewExpensesModal";
 
 const App = () => {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
+  const [showViewExpenseModal, setShowViewExpenseModal] = useState(false);
   const [budgetId, setBudgetId] = useState("");
   const { budgets, getBudgetExpenses } = useBudgets();
 
@@ -23,9 +25,19 @@ const App = () => {
     setShowAddExpenseModal(false);
   }
 
+  function hideViewExpenseModal() {
+    setShowViewExpenseModal(false);
+  }
+
   function showExpenseModalForBudget(id = "UNCATEGORIZED_EXPENSE") {
     setBudgetId(id);
     setShowAddExpenseModal(true);
+    console.log(" I set value to " + id);
+  }
+
+  function setBudgetIdForViewExpense(id = "UNCATEGORIZED_EXPENSE") {
+    setBudgetId(id);
+    setShowViewExpenseModal(true);
     console.log(" I set value to " + id);
   }
   return (
@@ -55,12 +67,14 @@ const App = () => {
               amount={amount}
               maxAmount={budget.max}
               id={budget.id}
-              budgetIdToPass={showExpenseModalForBudget}
+              budgetIdToPassForAddModal={showExpenseModalForBudget}
+              budgetIdToPassForViewModal={setBudgetIdForViewExpense}
             />
           );
         })}
         <UncategorizedBudgetCard
-          budgetIdToPass={showExpenseModalForBudget}
+          budgetIdToPassForAddModal={showExpenseModalForBudget}
+          budgetIdToPassForViewModal={setBudgetIdForViewExpense}
           bgGray={true}
         />
         <TotalBudgetCard />
@@ -73,6 +87,11 @@ const App = () => {
         showModal={showAddExpenseModal}
         hideModal={hideAddExpenseModal}
         defaultBudgetId={budgetId}
+      />
+      <ViewExpensesModal
+        showExpenseModal={showViewExpenseModal}
+        hideExpenseModal={hideViewExpenseModal}
+        passBudgetId={budgetId}
       />
     </>
   );

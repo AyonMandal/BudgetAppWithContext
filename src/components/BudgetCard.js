@@ -47,6 +47,7 @@ const BudgetCard = (props) => {
               Add Expense
             </Button>
             <Button
+              disabled={props.amount > 0 ? false : true}
               variant="outline-secondary"
               onClick={() => props.budgetIdToPassForViewModal(props.id)}
             >
